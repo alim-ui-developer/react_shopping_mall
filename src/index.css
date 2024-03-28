@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: "Gowun Batang", serif;
+  font-family: "Gowun Batang", serif !important;
   font-weight: 700;
   font-style: normal;
 }
@@ -22,6 +22,8 @@ li{
 }
 
 a, img{
+  color:inherit !important; 
+  text-decoration: none !important;
   display:block;
 }
 

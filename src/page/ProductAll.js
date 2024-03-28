@@ -1,13 +1,15 @@
 import React, { useState, useEffect }  from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 import ProductCard from '../component/ProductCard';
 
-const ProductAll = () => {
+const ProductAll = ({}) => {
   const [productList, setProductList] = useState([]);
   const getProducts = async () => {
-    let url = 'https://my-json-server.typicode.com/shanghanrun/hm_shopping/products';
+    // let url = 'https://my-json-server.typicode.com/shanghanrun/hm_shopping/products';
+    let url = 'http://localhost:5000/products';
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data)
+    setProductList([...data]);
   };
   
   useEffect(() => {
@@ -16,7 +18,15 @@ const ProductAll = () => {
 
   return (
     <div>
-      <ProductCard />
+      <Container>
+        <Row>
+          {productList && productList.map((item) => 
+            <Col key={item.id} lg={3} md={6}>
+              <ProductCard item={item} />
+            </Col>
+          )}
+        </Row>
+      </Container>
     </div>
   )
 }
