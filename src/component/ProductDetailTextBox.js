@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 
 const ProductDetailTextBox = ({product}) => {
+  const [ colorSelect, setColorSelect ] = useState(null);
+  const [ sizeSelect, setSizeSelect ] = useState(null);
   const stockText = () => {
     if(product.stock === 0){
       return '매장 내 재고가 없습니다.'
@@ -12,6 +14,11 @@ const ProductDetailTextBox = ({product}) => {
       return '매장 내 재고가 있습니다.'
     }
   }
+
+  const addCart = () => {
+    alert(`고객님이 선택하신'${product.title}'의 \n${colorSelect} / ${sizeSelect}를 장바구니에 넣었습니다.`)
+  }
+
   return (
     <>
       <div>
@@ -19,7 +26,7 @@ const ProductDetailTextBox = ({product}) => {
         <p className='price'>₩{product.price.toLocaleString('ko-KR')}</p>
         <div className="optionBox">
           <h3>색상</h3>
-          <select className='sizeSelectBox'>
+          <select className='sizeSelectBox' onChange={(evnet) => setColorSelect(evnet.target.value)}>
           {product.color.map((color) => 
               <option key={`${product.name}color`} value={color}>{color}</option>
             )}
@@ -27,7 +34,7 @@ const ProductDetailTextBox = ({product}) => {
         </div>
         <div className="optionBox">
           <h3>사이즈</h3>
-          <select className='sizeSelectBox'>
+          <select className='sizeSelectBox' onChange={(evnet) => setSizeSelect(evnet.target.value)}>
             {product.size.map((size) => 
               <option key={`${product.name}size`} value={size}>{size}</option>
             )}
@@ -43,7 +50,7 @@ const ProductDetailTextBox = ({product}) => {
           </p>
         </div>
       </div>
-      <button className='btn_cart'>장바구니에 추가</button>
+      <button className='btn_cart' onClick={() => addCart()}>장바구니에 추가</button>
     </>
   )
 }
