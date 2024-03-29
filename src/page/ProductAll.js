@@ -7,7 +7,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 
 
-const ProductAll = ({}) => {  
+const ProductAll = ({authenticate}) => {  
   const [ productList, setProductList ] = useState([]);
   const [ query, setQuery ] = useSearchParams();
 
@@ -37,7 +37,7 @@ const ProductAll = ({}) => {
           </Col>
         )}
         {/* 검색한 상품이 없을 때 */}
-        {productList.length <= 0 && 
+        {productList.length <= 0 && authenticate === false && 
         <article className='searchProductEmptyBox'>
           <div>
             <i><FontAwesomeIcon icon={ faFaceSadTear } /></i>

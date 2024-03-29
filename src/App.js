@@ -27,7 +27,7 @@ function App() {
       <Header authenticate={authenticate} setAuthenticate={setAuthenticate} />
       <section className='wrapper'>
         <Routes>
-          <Route path="/" element={<ProductAll />} />
+          <Route path="/" element={<ProductAll authenticate={authenticate} />} />
           <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
           <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
         </Routes>
