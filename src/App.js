@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './component/Navbar';
+import Header from './component/Header';
 import Login from './page/Login';
 import ProductAll from './page/ProductAll';
 import PrivateRoute from './route/PrivateRoute';
@@ -24,15 +24,15 @@ function App() {
   },[authenticate]);
   return (
     <>
-    <section className='wrapper'>
-      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
-      <Routes>
-        <Route path="/" element={<ProductAll />} />
-        <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
-        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
-      </Routes>
-    </section>
-    <footer>Copyright &copy; H&amp;M All rights reserved.</footer>
+      <Header authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <section className='wrapper'>
+        <Routes>
+          <Route path="/" element={<ProductAll />} />
+          <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
+          <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
+        </Routes>
+      </section>
+      <footer>Copyright &copy; H&amp;M All rights reserved.</footer>
     </>
   );
 }

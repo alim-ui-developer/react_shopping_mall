@@ -1,32 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap';
 
 const ProductDetail = () => {
+  let { id } = useParams(); // url에 담겨있는 파라미터값을 가져온다
+  const [ product, setProduct ] = useState(null);
+  const getProductDetail = async () => {
+    let url = `http://localhost:5000/products/${id}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setProduct(data);
+  }
+
+  useEffect(() => {
+    getProductDetail();
+  },[])
+
   return (
-    <article className='procutDetailWrap'>
-      <div className="topBox">
-        <div className="imageBox">
-          <div className="icons">
-            <i className='ico_new'>New</i>
-            <i className='ico_choice'>Conscious Choice</i>
+    <>
+      {product && 
+        <Container className='procutDetailWrap'>
+          <Row className='topBox'>
+            <Col lg={5} className="imageBox">
+              <div className='image'>
+                <div className="icons">
+                  {product.new &&
+                    <i className='ico_new'>New</i>
+                  }
+                  {product.choice && 
+                    <i className='ico_choice'>Conscious Choice</i>
+                  }
+                </div>
+                <img src={product.img} alt={product.title} />
+              </div>
+            </Col>
+            <Col lg={7} className='textBox'>
+              <div>
+                <h2 className='title'>{product.title}</h2>
+                <p className='price'>₩{product.price.toLocaleString('ko-KR')}</p>
+                <select className='sizeSelectBox'>
+                  <option value="">S</option>
+                  <option value="">M</option>
+                  <option value="">L</option>
+                  <option value="">XL</option>
+                </select>
+              </div>
+              <button className='btn_cart'>장바구니에 추가</button>
+            </Col>
+          </Row>
+          <div className="bottomBox">
+            <h3>detail</h3>
+            <p>
+              <img src={product.img} alt={product.title} />
+            </p>
           </div>
-          <img src='https://noona-hnm.netlify.app/ankle-jeans.jpeg' alt='슬림핏 맘 하이웨이스트 앵클 진' />
-        </div>
-        <div className='textBox'>
-          <div>
-            <h2 className='title'>슬림핏 맘 하이웨이스트 앵클 진</h2>
-            <p className='price'>₩{(29900).toLocaleString('ko-KR')}</p>
-            <button className='btn_sizeSelect'>사이즈 선택 &gt;</button>
-          </div>
-          <button className='btn_cart'>장바구니에 추가</button>
-        </div>
-      </div>
-      <div className="bottomBox">
-        <h3>detail</h3>
-        <p>
-        <img src='https://noona-hnm.netlify.app/ankle-jeans.jpeg' alt='슬림핏 맘 하이웨이스트 앵클 진' />
-        </p>
-      </div>
-    </article>
+        </Container>
+      }
+    </>
   )
 }
 
