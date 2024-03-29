@@ -247,7 +247,16 @@
   }
 }
 
+.loadingSpinner{
+  display:block;
+  position:absolute;
+  top:50%;
+  left:50%;
+}
+
 .procutAllWrap{
+  position:relative;
+  min-height:calc(100vh - (230px + 120px));
   padding:100px 0 200px;
   box-sizing:border-box;
 }
@@ -304,9 +313,12 @@
 }
 
 .procutDetailWrap{
+  position:relative;
+  min-height:calc(100vh - (230px + 120px));
   padding:100px 0 200px;
   box-sizing:border-box;
   .topBox{
+    position:relative;
     .imageBox{
       .image{
         position:relative;
@@ -369,16 +381,48 @@
         margin-bottom:20px;
       }
       .price{
+        margin-bottom:50px;
         font-size:1.75em;
         line-height:1;
         text-align:right;
         font-style:italic;
       }
-      .sizeSelectBox{
-        width:100px;
-        border:1px solid #000;
-        font-size:0.75rem;
-        padding:5px 10px;
+      .optionBox{
+        display:flex;
+        align-items: center;
+        margin:10px 0;
+        h3{
+          width:120px;
+          font-size:1.25rem;
+          margin:0;
+        }
+        select{
+          width:calc(100% - 120px);
+          border:1px solid #b9b9b9;
+          font-size:1rem;
+          padding:5px 10px;
+          margin:0;
+        }
+      }
+      .text{
+        margin-top:30px;
+        p{
+          display:flex;
+          align-items: center;
+          margin-bottom:5px;
+          color:gray;
+          i{
+            display:block;
+            width:25px;
+            svg{
+              width:16px;
+            }
+          }
+          span{
+            display:block;
+            width:calc(100% - 50px);
+          }
+        }
       }
       .btn_cart{
         width:100%;
@@ -386,17 +430,18 @@
         background:#000;
         color:#fff;
         &:hover{
-          background:seagreen;
+          background:crimson;
         }
       }
     }
   }
   .bottomBox{
+    position:relative;
     margin-top:50px;
     padding:50px 0;
     border-top:1px solid silver;
     h3{
-      font-size:2.25rem;
+      font-size:2rem;
     }
   }
 }

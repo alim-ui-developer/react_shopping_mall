@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSadTear } from '@fortawesome/free-regular-svg-icons';
 import ProductCard from '../component/ProductCard';
 import { Link, useSearchParams } from 'react-router-dom';
-
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ProductAll = ({authenticate}) => {  
+  const [ isLoading, setIsLoading ] = useState(false);
   const [ productList, setProductList ] = useState([]);
   const [ query, setQuery ] = useSearchParams();
 
@@ -16,10 +16,12 @@ const ProductAll = ({authenticate}) => {
     if(searchQuery === null){
       searchQuery = '';
     }
-    let url = `https://my-json-server.typicode.com/alim-ui-developer/react_shopping_mall//products?q=${searchQuery}`;
+    setIsLoading(true);
+    let url = `https://my-json-server.typicode.com/alim-ui-developer/react_shopping_mall/products?q=${searchQuery}`;
+    // let url = `http://localhost:5000/products?q=${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();
-
+    setIsLoading(false);
     setProductList([...data]);
   };
   
@@ -29,24 +31,29 @@ const ProductAll = ({authenticate}) => {
 
   return (
     <Container className='procutAllWrap'>
-      <Row>
-        {/* 상품 목록 보여주기 */}
-        {productList && productList.map((item) => 
-          <Col key={item.id} lg={3} md={6}>
-            <ProductCard item={item} />
-          </Col>
-        )}
-        {/* 검색한 상품이 없을 때 */}
-        {productList.length <= 0 && authenticate === false && 
-        <article className='searchProductEmptyBox'>
-          <div>
-            <i><FontAwesomeIcon icon={ faFaceSadTear } /></i>
-            <p>검색하신 상품이 없습니다</p>
-            <Link to='/' className='btn_allProductList'>전체 상품 보러가기 &gt;</Link>
-          </div>
-        </article>
-        }
-      </Row>
+      {isLoading ? 
+        <ClipLoader color="crimson" size={50} className='loadingSpinner' /> :
+        <>
+          <Row>
+            {/* 상품 목록 보여주기 */}
+            {productList && productList.map((item) => 
+              <Col key={item.id} lg={3} md={6}>
+                <ProductCard item={item} />
+              </Col>
+            )}
+            {/* 검색한 상품이 없을 때 */}
+            {productList.length <= 0 && authenticate === false && 
+            <article className='searchProductEmptyBox'>
+              <div>
+                <i><FontAwesomeIcon icon={ faFaceSadTear } /></i>
+                <p>검색하신 상품이 없습니다</p>
+                <Link to='/' className='btn_allProductList'>전체 상품 보러가기 &gt;</Link>
+              </div>
+            </article>
+            }
+          </Row>
+        </>
+      }
     </Container>
   )
 }

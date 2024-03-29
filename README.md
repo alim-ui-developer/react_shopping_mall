@@ -17,6 +17,7 @@
 * json-server: https://www.npmjs.com/package/json-server
 * react-bootstrap: https://react-bootstrap.netlify.app
 * font awesome: https://fontawesome.com
+* react-spinner: https://www.npmjs.com/package/react-spinners
 * my-json: https://my-json-server.typicode.com
 * Netlify: https://www.netlify.com
 
