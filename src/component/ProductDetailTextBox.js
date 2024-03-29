@@ -16,6 +16,8 @@ const ProductDetailTextBox = ({product}) => {
   }
 
   const addCart = () => {
+    colorSelect === null || sizeSelect === null ? 
+    alert('옵션을 선택해주세요!') : 
     alert(`고객님이 선택하신'${product.title}'의 \n${colorSelect} / ${sizeSelect}를 장바구니에 넣었습니다.`)
   }
 
@@ -27,6 +29,7 @@ const ProductDetailTextBox = ({product}) => {
         <div className="optionBox">
           <h3>색상</h3>
           <select className='sizeSelectBox' onChange={(evnet) => setColorSelect(evnet.target.value)}>
+          <option value="null">--- 선택 ---</option>
           {product.color.map((color) => 
               <option key={`${product.name}color`} value={color}>{color}</option>
             )}
@@ -35,6 +38,7 @@ const ProductDetailTextBox = ({product}) => {
         <div className="optionBox">
           <h3>사이즈</h3>
           <select className='sizeSelectBox' onChange={(evnet) => setSizeSelect(evnet.target.value)}>
+          <option value="null">--- 선택 ---</option>
             {product.size.map((size) => 
               <option key={`${product.name}size`} value={size}>{size}</option>
             )}
