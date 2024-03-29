@@ -6,7 +6,7 @@ const ProductDetailTextBox = ({product}) => {
   const [ colorSelect, setColorSelect ] = useState(null);
   const [ sizeSelect, setSizeSelect ] = useState(null);
   const stockText = () => {
-    if(product.stock === 0){
+    if(product.stock <= 0){
       return '매장 내 재고가 없습니다.'
     }else if(product.stock <= 100){
       return '매장 내 재고가 거의 없습니다.';
@@ -28,7 +28,7 @@ const ProductDetailTextBox = ({product}) => {
         <p className='price'>₩{product.price.toLocaleString('ko-KR')}</p>
         <div className="optionBox">
           <h3>색상</h3>
-          <select className='sizeSelectBox' onChange={(evnet) => setColorSelect(evnet.target.value)}>
+          <select onChange={(evnet) => setColorSelect(evnet.target.value)} disabled={product.stock <= 0 && true}>
           <option value="null">--- 선택 ---</option>
           {product.color.map((color) => 
               <option key={`${product.name}color`} value={color}>{color}</option>
@@ -37,7 +37,7 @@ const ProductDetailTextBox = ({product}) => {
         </div>
         <div className="optionBox">
           <h3>사이즈</h3>
-          <select className='sizeSelectBox' onChange={(evnet) => setSizeSelect(evnet.target.value)}>
+          <select onChange={(evnet) => setSizeSelect(evnet.target.value)} disabled={product.stock <= 0 && true}>
           <option value="null">--- 선택 ---</option>
             {product.size.map((size) => 
               <option key={`${product.name}size`} value={size}>{size}</option>
@@ -54,7 +54,7 @@ const ProductDetailTextBox = ({product}) => {
           </p>
         </div>
       </div>
-      <button className='btn_cart' onClick={() => addCart()}>장바구니에 추가</button>
+      <button className='btn_cart' onClick={() => addCart()} disabled={product.stock <= 0 && true}>장바구니에 추가</button>
     </>
   )
 }
