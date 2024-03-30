@@ -18,7 +18,7 @@ const ProductDetailTextBox = ({product}) => {
   const addCart = () => {
     colorSelect === null || sizeSelect === null ? 
     alert('옵션을 선택해주세요!') : 
-    alert(`고객님이 선택하신'${product.title}'의 \n${colorSelect} / ${sizeSelect}를 장바구니에 넣었습니다.`)
+    alert(`고객님이 선택하신 '${product.title}'의 \n${colorSelect}(${sizeSelect})를 장바구니에 넣었습니다.`)
   }
 
   return (

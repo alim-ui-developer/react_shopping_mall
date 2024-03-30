@@ -81,7 +81,7 @@
     text-align:center;
     img{
       display:inline-block;
-      width:80px;
+      max-width:80px;
       height:auto;
     }
   }
@@ -133,7 +133,7 @@
     .logo{
       margin-top:45px;
       img{
-        width:70px;
+        max-width:70px;
       }
     }
     .utils{
@@ -150,25 +150,25 @@
         transform:translateX(-50%);
       }
     }
-.navbar{
-  .container{
-    padding:0;     
-    button{
-      position:absolute;
-      top:-165px;
-      width:38px;
-      height:38px;
-      padding:0;
-      border: 1px solid #d5d5d5;
-      box-sizing: border-box;
-      border-radius:0;
-      span{
-        width:20px;
-        height:20px;
+    .navbar{
+      .container{
+        padding:0;     
+        button{
+          position:absolute;
+          top:-165px;
+          width:38px;
+          height:38px;
+          padding:0;
+          border: 1px solid #d5d5d5;
+          box-sizing: border-box;
+          border-radius:0;
+          span{
+            width:20px;
+            height:20px;
+          }
+        }
       }
     }
-  }
-}
   }
 }
 
@@ -212,7 +212,7 @@
     margin-bottom:20px;
   }
   .price{
-    font-size:1rem;
+    font-size:1.25rem;
     line-height:1;
     text-align:right;
     font-style:italic;
@@ -257,7 +257,7 @@
 .procutAllWrap{
   position:relative;
   min-height:calc(100vh - (230px + 120px));
-  padding:100px 0 200px;
+  padding: 8rem 0 10rem;
   box-sizing:border-box;
 }
 
@@ -302,6 +302,7 @@
     h2{
       margin-bottom:30px;
       font-size:2.25rem;
+      line-height:1;
       text-align:center;
     }
     form{
@@ -315,7 +316,7 @@
 .procutDetailWrap{
   position:relative;
   min-height:calc(100vh - (230px + 120px));
-  padding:100px 0 200px;
+  padding:8rem 0 10rem;
   box-sizing:border-box;
   .topBox{
     position:relative;
@@ -376,13 +377,13 @@
       flex-direction: column;
       justify-content: space-between;
       .title{
-        font-size:2.25rem;
+        font-size:2rem;
         line-height:1.35;
         margin-bottom:20px;
       }
       .price{
-        margin-bottom:50px;
-        font-size:1.75em;
+        margin-bottom:40px;
+        font-size:1.5em;
         line-height:1;
         text-align:right;
         font-style:italic;
@@ -393,7 +394,7 @@
         margin:10px 0;
         h3{
           width:120px;
-          font-size:1.25rem;
+          font-size:1rem;
           margin:0;
         }
         select{
@@ -408,7 +409,7 @@
         }
       }
       .text{
-        margin-top:30px;
+        margin:30px 0 20px;
         p{
           display:flex;
           align-items: center;
@@ -448,6 +449,11 @@
     border-top:1px solid silver;
     h3{
       font-size:2rem;
+    }
+    img{
+      width:auto;
+      max-width:100%;
+      height:auto;
     }
   }
 }

@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&display=swap');
 
+html{
+  font-size:16px;
+  @media (max-width: 576px){
+    font-size:12px;
+  }
+  @media (min-width:577px) and (max-width:991px){
+    font-size:14px;
+  }
+}
 body {
+  min-height:100vh;
   margin: 0;
   font-family: "Gowun Batang", serif !important;
   font-weight: 700;
@@ -34,4 +44,3 @@ button{
   background:transparent;
   border:none;
 }
-
