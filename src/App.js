@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import react from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
@@ -19,17 +19,14 @@ import PrivateRoute from './route/PrivateRoute';
 // 7. 상품을 검색할 수 있다.
 
 function App() {
-  const [ authenticate, setAuthenticate ] = useState(false); // true면 로그인이 됨, false면 안됨
-  useEffect(() => {
-  },[authenticate]);
   return (
     <>
-      <Header authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <Header />
       <section className='wrapper'>
         <Routes>
-          <Route path="/" element={<ProductAll authenticate={authenticate} />} />
-          <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
-          <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
+          <Route path="/" element={<ProductAll />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/product/:id" element={<PrivateRoute />} />
         </Routes>
       </section>
       <footer>Copyright &copy; H&amp;M All rights reserved.</footer>

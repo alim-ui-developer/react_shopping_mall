@@ -4,19 +4,20 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProductDetailImageBox from '../component/ProductDetailImageBox';
 import ProductDetailTextBox from '../component/ProductDetailTextBox';
 import ClipLoader from "react-spinners/ClipLoader";
+import { productAction } from '../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductDetail = () => {
   const [ isLoading, setIsLoading ] = useState(false);
   let { id } = useParams(); // url에 담겨있는 파라미터값을 가져온다
-  const [ product, setProduct ] = useState(null);
+  const product = useSelector((state) => state.product.selectedItem);
+  // const [ product, setProduct ] = useState(null);
+  const dispatch = useDispatch();
+  
   const getProductDetail = async () => {
     setIsLoading(true);
-    let url = `https://my-json-server.typicode.com/alim-ui-developer/react_shopping_mall/products/${id}`
-    // let url = `http://localhost:5000/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
+    dispatch(productAction.getProductDetail(id));
     setIsLoading(false);
-    setProduct(data);
   }
   
   useEffect(() => {

@@ -5,24 +5,23 @@ import { faFaceSadTear } from '@fortawesome/free-regular-svg-icons';
 import ProductCard from '../component/ProductCard';
 import { Link, useSearchParams } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
+import { productAction } from '../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ProductAll = ({authenticate}) => {  
+const ProductAll = (authenticate) => {  
   const [ isLoading, setIsLoading ] = useState(false);
-  const [ productList, setProductList ] = useState([]);
+  const productList = useSelector((state) => state.product.productList);
   const [ query, setQuery ] = useSearchParams();
+  const dispatch = useDispatch();
 
-  const getProducts = async () => {
+  const getProducts = () => {
     let searchQuery = query.get('q');
     if(searchQuery === null){
       searchQuery = '';
     }
     setIsLoading(true);
-    let url = `https://my-json-server.typicode.com/alim-ui-developer/react_shopping_mall/products?q=${searchQuery}`;
-    // let url = `http://localhost:5000/products?q=${searchQuery}`;
-    let response = await fetch(url);
-    let data = await response.json();
+    dispatch(productAction.getProducts(searchQuery))
     setIsLoading(false);
-    setProductList([...data]);
   };
   
   useEffect(() => {
